@@ -100,7 +100,12 @@ export class TestScoreComponent implements OnInit {
 
     if(this.params === null) {
       this.toastService.showToast('warning', 5000, 'Name must not be null');
-    } else {
+      return null;
+    } else if(this.params.search(', ') == -1) {
+      this.toastService.showToast('warning', 5000, 'Name must contain a comma and a space');
+      return null;
+    }
+    else {
       // const commaIndex = this.params.indexOf(', ');
       // const firstName = this.params.slice(commaIndex + 2, this.params.length);
       // const lastName = this.params.slice(0, commaIndex);
